@@ -13,6 +13,10 @@ const resultBalance = data.reduce((value, valuePrincipal) => {
   return valuePrincipal.amount + value
 }, 0)
 
+//recibir el numero mas alto
+const numbers = data.map(nums => nums.amount)
+const maxNumber = Math.max(...numbers)
+
 //header del spend
 const myBalance = () => {
   const $headerBalance = document.createElement('div')
@@ -70,7 +74,7 @@ spend()
 //graficos
 function graficos($contGraficos) {
   const $display = document.createElement('div')
-  data.forEach(e => {
+  data.forEach((e, index) => {
     const { day, amount } = e
     const $contDiv = document.createElement('div')
     const $elements = document.createElement('div')
@@ -82,7 +86,12 @@ function graficos($contGraficos) {
     $elements.classList.add('elements')
 
     $day.textContent = `${day}`
-    $elements.style.height = `${amount * 3}px`
+    const calc = `${Number(amount * 3).toFixed(2)}`
+    $elements.style.height = `${calc}px`
+
+    if ($elements.style.height === `${Number(maxNumber * 3).toFixed(2)}px`) {
+      $elements.style.backgroundColor = 'hsl(186, 34%, 60%)'
+    }
 
     $elements.addEventListener('mouseover', function () {
       $target.classList.add('target')
