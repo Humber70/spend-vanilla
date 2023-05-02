@@ -16,5 +16,6 @@ module.exports = {
     'spaced-comment': 'off',
     'import/no-absolute-path': 'off',
     'space-before-function-paren': 'off',
+    'no-unused-expressions': 'off',
   },
 }
